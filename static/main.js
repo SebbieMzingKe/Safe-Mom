@@ -69,8 +69,14 @@ $(document).ready(function(){
     .css("width",percent+"%")
     }
     
-    $(".submit").click(function(){
-    return false;
-    })
+    // $(".submit").click(function(){
+    // return false;
+    // })
+
+    // $("form").submit(function(event){
+    //     // event.preventDefault(); // prevent the default form submission
+    //     // window.location.href = "/home"; // redirect to predict.html
+    // });
+
     
     });
