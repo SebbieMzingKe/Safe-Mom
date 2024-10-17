@@ -242,3 +242,8 @@ p{
 input{
     border-radius: 6px;
 }
+.logo{
+    height:50px; 
+    width: 50px;
+    padding: auto 5px;
+}

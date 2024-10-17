@@ -4,6 +4,7 @@ import email_validator
 import pandas as pd
 import joblib
 import xgboost
+import numpy as np
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='a5cd36c715058bf2c9057169b7134a4d'
@@ -35,32 +36,61 @@ def register():
         return redirect(url_for('hello_world'))
     return render_template('register.html', title='Register', form=form)
 
-@app.route("/predict", methods = ["GET", "POST"])
+
+
+# Load the model 
+file = open("safe_mom_model_1.pkl", "rb")
+model = joblib.load(file)
+
+
+@app.route('/predict', methods=['GET', 'POST'])
 def predict():
-    if request.method == "POST":
-        to_predict_list = request.form.to_dict()
+    if request.method == 'POST':
+        # Collect form data
+        form_data = {
+            'age': request.form.get('age'),
+            'gestational': request.form.get('gestational'),
+            'height': request.form.get('height'),
+            'weight': request.form.get('pregnancies'),
+            'bmi': request.form.get('bmi'),
+            'sysBP': request.form.get('sysBP'),
+            'dysBP': request.form.get('dysBP'),
+            'hb': request.form.get('hb'),
+            'pcv': request.form.get('pcv'),
+            'tsh': request.form.get('tsh'),
+            'platelet': request.form.get('platelet'),
+            'creatinine': request.form.get('creatinine'),
+            'plgf_sflt': request.form.get('plgf:sflt'),
+            'SEeng': request.form.get('SEeng'),
+            'cysC': request.form.get('cysC'),
+            'pp_13': request.form.get('pp_13'),
+            'glycerides': request.form.get('glycerides'),
+            'Hypertension': request.form.get('Hypertension'),
+            'diabetes': request.form.get('diabetes'),
+            'fam_htn': request.form.get('fam_htn'),
+            'sp_art': request.form.get('sp_art'),
+            'occupation': request.form.get('occupation'),
+            'diet': request.form.get('diet'),
+            'activity': request.form.get('activity'),
+            'sleep': request.form.get('sleep')
+        }
 
-        try:
-            prediction = preprocessDataAndPredict(to_predict_list)
-            return render_template('/predict.html', prediction = prediction)
-        
-        except ValueError:
-            return "Please Enter Valid Values"
-        
+        # Convert form data into a list of values
+        input_data = list(form_data.values())
 
-    return "Method not allowed"
+        # Convert the input data to a numpy array
+        data_numpy = np.array(input_data, dtype=float)
 
-def preprocessDataAndPredict(feature_dict):
-    test_data = {k:[v] for k, v in feature_dict.items()}
-    test_data = pd.DataFrame(test_data) 
-    
-    file = open("safe_mom_model_1.pkl", "rb")
-    
-    trained_model = joblib.load(file)
-    
-    predict = trained_model.predict(test_data)
+        # Reshape the array for a single prediction
+        data_reshaped = data_numpy.reshape(1, -1)
 
-    return predict
+        # Make the prediction
+        prediction = model.predict(data_reshaped)
+
+        # Render the results template with the prediction
+        return render_template('predict.html', prediction=prediction)
+
+    return render_template('form.html')
 
 
 if __name__ == '__main__':
