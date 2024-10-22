@@ -1,3 +1,5 @@
+[Link Text](https://docs.google.com/document/d/1W3oAD_fIWWgKRgKWHbQDM1mipuaYdslJR8EOjB9jVCg/edit?tab=t.0)
+
 # Safe Mom: Predictive Machine Learning for Preeclampsia      
 
 ## **Project Overview:**  
