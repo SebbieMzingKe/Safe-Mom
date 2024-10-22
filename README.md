@@ -1,4 +1,4 @@
-[KamiLimu Research Documentation: Preeclampsia in Pregnant Women by Data Science Group 2]([https://docs.google.com/document/d/1W3oAD_fIWWgKRgKWHbQDM1mipuaYdslJR8EOjB9jVCg/edit?tab=t.0](https://github.com/SebbieMzingKe/Safe-Mom/blob/master/KamiLimu%20Research_%20Preeclampsia%20in%20Pregnant%20Women%20by%20Data%20Science%20Group%202.pdf))
+[Data Science 2 Documentation]([https://docs.google.com/document/d/1W3oAD_fIWWgKRgKWHbQDM1mipuaYdslJR8EOjB9jVCg/edit?tab=t.0](https://github.com/SebbieMzingKe/Safe-Mom/blob/master/KamiLimu%20Research_%20Preeclampsia%20in%20Pregnant%20Women%20by%20Data%20Science%20Group%202.pdf))
 
 # Safe Mom: Predictive Machine Learning for Preeclampsia      
 
