@@ -23,3 +23,16 @@ Future Plans:
 Mobile Application: Develop a mobile version for wider accessibility.
 Continuous Model Improvement: Enhance accuracy with more diverse datasets.
 Integration with Wearables: Gather real-time health data from wearable devices.
+
+
+## Installation
+
+### Prerequisites
+- Python 3.x installed
+- MySQL database set up
+- `pip` for Python package installation
+
+### Steps
+1. Clone this repository to your local machine.
+   ```bash
+   git clone https://github.com/yourusername/safe-mom-project.git
