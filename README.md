@@ -36,3 +36,10 @@ Integration with Wearables: Gather real-time health data from wearable devices.
 1. Clone this repository to your local machine.
    ```bash
    git clone https://github.com/yourusername/safe-mom-project.git
+
+### Usage
+On launching the Safe Mom, clinicians log in using their credentials. Once logged in, they can access the patient data input section.
+
+Here, clinicians will enter patient vitals such as blood pressure, proteinuria, and fetal heart rate. Once the data is submitted, the machine learning model (powered by XGBoost) will process it.
+
+The platform will then display the model's prediction on whether the patient is at risk of developing preeclampsia. Based on the results, the model will provide tailored recommendations, such as increasing monitoring, implementing preventive measures, or referring the patient to a specialist.
