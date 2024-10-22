@@ -37,7 +37,23 @@ Integration with Wearables: Gather real-time health data from wearable devices.
 1. Clone this repository to your local machine.
    ```bash
    git clone https://github.com/yourusername/safe-mom-project.git
+2. Navigate into the project directory.
+   ```bash
+   cd safe-mom
+3. Set up a virtual environment.
+   ```bash
+   python -m venv env
+   env\Scripts\activate  # On Mac, use `source env/bin/activate`
+4. Install the dependencies from the requirements.txt file.
+   ```bash
+   pip install -r requirements.txt
+5. Set up your MySQL database by importing the provided schema.
+   ```bash
+   mysql -u username -p safe-mom < safe-mom.sql
 
+6. Run the application.
+   ```bash
+   flask run or uvicorn app:app --reload or python app.py
 ### Usage
 On launching the Safe Mom, clinicians log in using their credentials. Once logged in, they can access the patient data input section.
 
