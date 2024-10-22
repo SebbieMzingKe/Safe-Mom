@@ -6,21 +6,90 @@
     <title>Results`</title>
     <link rel="stylesheet" href="{{url_for('static', filename = 'static\main.css')}}">
     <script src="{{url_for('static', filename = 'static\main.js')}}"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .testbox {
+            width: 60%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+        }
+        .banner {
+            background-color: #5cb85c;
+            padding: 15px;
+            border-radius: 8px 8px 0 0;
+            color: white;
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+        h2 {
+            text-align: center;
+            color: #343a40;
+        }
+        .prediction_result {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .thumbnail {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 45%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        .thumbnail h3 {
+            font-size: 1.5rem;
+            color: #495057;
+        }
+        .emoji {
+            margin: 15px 0;
+        }
+        .recommendations {
+            background-color: #e9ecef;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .recommendations ul {
+            list-style-type: disc;
+            padding-left: 20px;
+            text-align: left;
+        }
+    </style>
 </head>
+
 <body>
     <div class="testbox">
         <form action="/predict" method="POST" target="_blank">
         <div class="banner">
+            <img src="static\images\Safe Mom-4.png" alt="" height="50px" width="50px">
+
             <h1>Prediction Result</h1>
 
         </div>
-        <h2 style="text-align: center;">Given the information on the form themother's outcome in a course is the following</h2>
+        <h2 style="text-align: center;">Given the information on the form the mother's outcome in a course is the following</h2>
 
         <div class="prediction_result">
             <div class="thumbnail">
                 {% if prediction[0] == 0 %}
                 <h3>Not at Risk of Getting Preeclampsia</h3>
-                <img src="static\images\smile.jfif" class="emoji">
+                <img src="static\images\smile.jfif"  height="50px" width="50px" class="emoji">
                 <div class="recommendations">
                     <h2 style="text-align: center;" class="recom"> You are doing Great.</h2>
                     <h2 style="text-align: center;" class="recom">Keep up with the best practices!</h2>
@@ -31,7 +100,7 @@
                 {% if prediction[0] == 1 %}
 
                 <h3>At High Risk of Getting Preeclampsia</h3>
-                <img src="static\images\sad.webp" class="emoji">
+                <img src="static\images\sad.webp" height="50px" width="50px" class="emoji">
                 <div class="recommendations">
                     <h2 class="recom">Recommendations:</h2>
 
@@ -43,7 +112,7 @@
                         <li>Losing weight if you have obesity</li>
                     </ul>
                 </div>
-                {% end if %}
+                {% endif %}
             </div>
         </div>
     </form>

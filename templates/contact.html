@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>>Contact Us - Safe Mom</title>
+
+    <style>
+        body {
+            background-color: #f8f9fa; /* Light gray background for the body */
+        }
+        .navbar {
+            background-color: #6f42c1; /* Purple background for navbar */
+        }
+        .navbar-brand, .nav-link {
+            color: white !important; /* White text for navbar links */
+        }
+        .navbar-brand:hover, .nav-link:hover {
+            color: #d4d4d4 !important; /* Light gray on hover */
+        }
+        h1 {
+            color: #6f42c1; /* Purple heading */
+            margin-bottom: 30px;
+        }
+        .form-control {
+            border: 1px solid #6f42c1; /* Purple border for form fields */
+        }
+        .form-control:focus {
+            border-color: #6f42c1; /* Purple border on focus */
+            box-shadow: 0 0 5px rgba(111, 66, 193, 0.5); /* Light purple shadow */
+        }
+        .btn-primary {
+            background-color: #6f42c1; /* Purple button */
+            border-color: #6f42c1; /* Purple border for button */
+        }
+        .btn-primary:hover {
+            background-color: #5a31a1; /* Darker purple on hover */
+            border-color: #5a31a1; /* Darker purple border on hover */
+        }
+        footer {
+            background-color: #6f42c1; /* Purple background for footer */
+            color: white; /* White text for footer */
+            padding: 10px 0; /* Padding for footer */
+        }
+        .alert {
+            margin-top: 20px; /* Space above alert messages */
+        }
+    </style>
+
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">Safe Mom</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="/home">Home</a>
+                        <a class="nav-item nav-link" href="/about">About</a>
+                        <a class="nav-item nav-link" href="/contact">Contact</a>
+                    </div>
+                    <div class="navbar-nav">
+                        {% if 'user_id' in session %}
+                            <a class="nav-item nav-link" href="/logout">Logout</a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="/login">Login</a>
+                            <a class="nav-item nav-link" href="/register">Register</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <main role="main" class="container mt-5">
+        <h1 class="text-center">Contact Us</h1>
+        <form action="{{ url_for('send_message') }}" method="POST">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+        
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} mt-3">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </main>
+
+    <footer class="container text-center mt-5">
+        <p>&copy; 2024 Safe Mom. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
