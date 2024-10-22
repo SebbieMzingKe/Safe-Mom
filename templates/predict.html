@@ -102,21 +102,36 @@
                 <h3>At High Risk of Getting Preeclampsia</h3>
                 <img src="static\images\sad.webp" height="50px" width="50px" class="emoji">
                 <div class="recommendations">
-                    <h2 class="recom">Recommendations:</h2>
+                    <h2 class="recom fz-14">Recommendations:</h2>
 
-                    <ul>
-                        <li>Taking a baby aspirin daily may decrease your risk of developing preeclampsia by about 15%.</li>
-                        <li>Getting enough sleep.</li>
-                        <li>Managing your blood pressure and blood sugar</li>
-                        <li>Maintaining a regular exercise routine.</li>
-                        <li>Losing weight if you have obesity</li>
-                    </ul>
+                    <ol style="--length: 5" role="list">
+                        <li style="--i: 1">
+                            <h3>Take a baby aspirin daily:</h3>
+                            <p>Studies suggest that taking low-dose aspirin can reduce the risk of developing preeclampsia by about 15% for women at risk .</p>
+                        </li>
+                        <li style="--i: 2">
+                            <h3>Get enough sleep: </h3>
+                            <p>Poor sleep has been linked to an increased risk of hypertension, a key factor in preeclampsia.</p>
+                        </li>
+                        <li style="--i: 3">
+                            <h3>Manage blood pressure and blood sugar</h3>
+                            <p>Keeping both blood pressure and blood sugar levels within healthy ranges can significantly lower preeclampsia risk .</p>
+                        </li>
+                        <li style="--i: 4">
+                            <h3>Maintain a regular exercise routine:</h3>
+                            <p>Regular physical activity can improve cardiovascular health and reduce the likelihood of preeclampsia .</p>
+                        </li>
+                        <li style="--i: 5">
+                            <h3>Lose weight if obese</h3>
+                            <p> Weight loss before pregnancy in obese women can lower the risk of hypertension and preeclampsia .</p>
+                        </li>
+                    </ol>
                 </div>
+                {% endif %}
                 {% endif %}
             </div>
         </div>
     </form>
     </div>
     
-</body>
-</html>
+{% endblock content %}

@@ -15,6 +15,7 @@ import pandas as pd
 import joblib
 import xgboost
 from sklearn.preprocessing import LabelEncoder
+import numpy as np
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='a5cd36c715058bf2c9057169b7134a4d'

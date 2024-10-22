@@ -10,13 +10,11 @@
                 <p>Fill all form field to go to next step</p>
                 <form id="msform" method="post" action="/predict">
                     <!-- progressbar -->
-
-                   
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>Demographics</strong></li>
                         <li id="personal"><strong>Medical History</strong></li>
                         <li id="personal"><strong>Blood & Urine Tests</strong></li>
-                        <li id="confirm"><strong>Pregnancy Data</strong></li>
+            
                     </ul>
                     <div class="progress">
                         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -28,7 +26,7 @@
                                     <h2 class="fs-title">Patient Data:</h2>
                                 </div>
                                 <div class="col-5">
-                                    <h2 class="steps">Step 1 - 4</h2>
+                                    <h2 class="steps">Step 1 - 3</h2>
                                 </div>
                             </div> 
                                 <label class="fieldlabels">AGE: *</label> 
@@ -36,9 +34,9 @@
                                 <label class="fieldlabels">GESTATIONAL AGE: *</label> 
                             <input type="number" name="gest_age" placeholder="Enter Gestational Age" required /> 
                                 <label class="fieldlabels">HEIGHT: *</label> 
-                                <input type="number" name="height" placeholder="Height" /> 
-                                <label class="fieldlabels">WEIGHT: *</label> 
-                                <input type="number" name="weight" placeholder="Weight" /> 
+                                <input type="number" name="height" step="0.01" placeholder="Height" /> 
+                                <label class="fieldlabels">Weight: *</label> 
+                                <input type="number" name="pregnancies" step="0.01" placeholder="Weight" />
                                 <label class="fieldlabels">BMI: *</label> 
                                 <input type="number" name="bmi" placeholder="Mother's BMI" />
                                 <label class="fieldlabels">SYSTOLIC BLOOD PRESSURE (mmHg): *</label> 
@@ -124,30 +122,7 @@
                         </div> 
                             <input type="submit" name="next" class="submit action-button" value="Submit" /> 
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
-                            <!-- <form id="msform" method="POST" action="{{ url_for('predict') }}"> -->
-
                     </fieldset>
-                    <!-- <fieldset>
-                        <div class="form-card">
-                            <div class="row">
-                                <div class="col-7">
-                                    <h2 class="fs-title">Finish:</h2>
-                                </div>
-                                <div class="col-5">
-                                    <h2 class="steps">Step 4 - 4</h2>
-                                </div>
-                            </div> <br><br>
-                            <h2 class="purple-text text-center"><strong>SUCCESS !</strong></h2> <br>
-                            <div class="row justify-content-center">
-                                <div class="col-3"> <img src="{{url_for('static', filename='images/img.png')}}" class="fit-image"> </div>
-                            </div> <br><br>
-                            <div class="row justify-content-center">
-                                <div class="col-7 text-center">
-                                    <h5 class="purple-text text-center">You Have Successfully Predicted Preeclampsia</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </fieldset> -->
                 </form>
             </div>
         </div>
