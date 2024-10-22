@@ -1,6 +1,6 @@
-#Safe Mom: Predictive Machine Learning for Preeclampsia      
+# Safe Mom: Predictive Machine Learning for Preeclampsia      
 
-**##Project Overview:**  
+## **Project Overview:**  
 Safe Mom is a predictive machine learning solution aimed at helping expectant mothers and healthcare professionals identify the likelihood of developing preeclampsia during the early stages of pregnancy. By leveraging patient data collected during the eighth week, the model provides valuable insights to mitigate risks and improve maternal health outcomes.
 
 **Project Goals:**
