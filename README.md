@@ -37,7 +37,7 @@ Integration with Wearables: Gather real-time health data from wearable devices.
 ### Steps
 1. Clone this repository to your local machine.
    ```bash
-   git clone https://github.com/yourusername/safe-mom-project.git
+   git clone https://github.com/SebbieMzingKe/safe-mom.git
 2. Navigate into the project directory.
    ```bash
    cd safe-mom
