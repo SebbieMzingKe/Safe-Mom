@@ -14,6 +14,7 @@
                         <li class="active" id="account"><strong>Demographics</strong></li>
                         <li id="personal"><strong>Medical History</strong></li>
                         <li id="personal"><strong>Blood & Urine Tests</strong></li>
+                        <li id="personal"><strong>Pregnancy Tests</strong></li>
             
                     </ul>
                     <div class="progress">
@@ -36,7 +37,7 @@
                                 <label class="fieldlabels">HEIGHT: *</label> 
                                 <input type="number" name="height" step="0.01" placeholder="Height" /> 
                                 <label class="fieldlabels">Weight: *</label> 
-                                <input type="number" name="pregnancies" step="0.01" placeholder="Weight" />
+                                <input type="number" name="weight" step="0.01" placeholder="Weight" />
                                 <label class="fieldlabels">BMI: *</label> 
                                 <input type="number" name="bmi" placeholder="Mother's BMI" />
                                 <label class="fieldlabels">SYSTOLIC BLOOD PRESSURE (mmHg): *</label> 
@@ -86,7 +87,7 @@
                                     <h2 class="fs-title">Personal Information:</h2>
                                 </div>
                                 <div class="col-5">
-                                    <h2 class="steps">Step 2 - 4</h2>
+                                    <h2 class="steps">Step 2 - 3</h2>
                                 </div>
                                 </div> 
                                 <label class="fieldlabels">HYPERTENSION: *</label>
@@ -107,7 +108,7 @@
                                     <h2 class="fs-title">Patient Data:</h2>
                                 </div>
                                 <div class="col-5">
-                                    <h2 class="steps">Step 3 - 4</h2>
+                                    <h2 class="steps">Step 3 - 3</h2>
                                 </div>
                             </div> 
                              <label class="fieldlabels">OCCUPATION: *</label> 
@@ -120,7 +121,8 @@
                             <input type="number" name="sleep" placeholder="Sleep Patterns" />
                             
                         </div> 
-                            <input type="submit" name="next" class="submit action-button" value="Submit" /> 
+                            <!-- <button type="submit" name="next" class="submit action-button">Submit </button> -->
+                            <input type="submit" name="next" class="next action-button" value="Submit"/>
                             <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
                 </form>

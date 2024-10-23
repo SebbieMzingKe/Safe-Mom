@@ -20,7 +20,7 @@ import numpy as np
 app = Flask(__name__)
 app.config['SECRET_KEY']='a5cd36c715058bf2c9057169b7134a4d'
 
-app.config['SQLALCHEMY_DATABASEURI'] = 'sqlite:///siste.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///siste.db'
 # db = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
@@ -68,7 +68,7 @@ def login():
             
             session['user_id'] = user[0]
             flash(f'Login successful! Welcome, {email}', 'success')
-            next_page = request.args.get('next')
+            # next_page = request.args.get('next')
             return redirect(url_for('hello_world'))
 
         else:
@@ -132,7 +132,7 @@ def contact():
 def predict():
     if request.method == "POST":
         to_predict_list = request.form.to_dict()
-        
+        print(to_predict_list)
         user_id = session.get('user_id')
         if not user_id:
             return "User Not logged in"
@@ -184,6 +184,7 @@ def predict():
         
         # try:
         prediction = preprocessDataAndPredict(json_data)
+        print(f"This is the prediction template: {prediction}")
         return render_template('/predict.html', prediction = prediction)
          
         
@@ -191,7 +192,7 @@ def predict():
         #     return "Please Enter Valid Values"
         
 
-    return "Method not allowed"
+    return "Method not allowed .."
 
 
 def preprocessDataAndPredict(json_data):
@@ -224,7 +225,8 @@ def preprocessDataAndPredict(json_data):
     trained_model = joblib.load(file)
     
     prediction = trained_model.predict(test_data)
-    
+    print(f"This is the prediction template: {prediction}")
+
     return prediction
 
 
