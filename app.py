@@ -7,40 +7,49 @@ from werkzeug.security import check_password_hash
 
 from forms import RegistrationForm, LoginForm
 
-import mysql.connector
-from mysql.connector import Error
+# import mysql.connector
+# from mysql.connector import Error
 import json
 import email_validator
 import pandas as pd
 import joblib
 import xgboost
+import psycopg2
+from psycopg2 import sql, Error
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='a5cd36c715058bf2c9057169b7134a4d'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///siste.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///siste.db'
 # db = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
 
 db_config = {
-    "host": "localhost",
-    "user":"root",
-    "password":"Seb#@Evayo1",
-    "database":"safe-mom"
+    "host": "ep-crimson-block-a5wcgzxx.us-east-2.aws.neon.tech",
+    "user":"neondb_owner",
+    "password":"it1M9sTPAqEh",
+    "database":"safe-mom",
+    "port": 5432
 }
 
 #mysql connection
 def get_db_connection():
     connection = None
     try:
-        connection = mysql.connector.connect(**db_config)
-        if connection.is_connected():
-            return connection
+        connection = psycopg2.connect(
+            host="ep-crimson-block-a5wcgzxx.us-east-2.aws.neon.tech",
+            database="safe-mom",
+            user="neondb_owner",
+            password="it1M9sTPAqEh"
+        )
+        # connection = psycopg2.connect(**db_config)
+        # if connection.is_connected():
+        return connection
     except Error as e:
-        print("Error: '{e}'")
+        print("Error: {e}")
     return connection
 
 def login_required(f):
@@ -141,7 +150,7 @@ def predict():
         cursor = connection.cursor()
         
         insert_query = '''
-        INSERT INTO patient_data 
+        INSERT INTO patients_data 
         (age, height, weight, bmi, sysbp, diabp, hb, pcv, platelet, creatinine, plgf_sflt, SEng, cysC, pp_13, glycerides, 
         htn, diabetes, fam_htn, sp_art, occupation, diet, activity, sleep, user_id) 
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
