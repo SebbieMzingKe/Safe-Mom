@@ -29,13 +29,13 @@ app.config['SECRET_KEY']='a5cd36c715058bf2c9057169b7134a4d'
 
 bcrypt = Bcrypt(app)
 
-db_config = {
-    "host": config("DB_HOST"),
-    "user":config("DB_USER"),
-    "password":config("DB_PASSWORD"),
-    "database":config("DB_NAME"),
-    "port": config("DB_PORT", cast=int)
-}
+# db_config = {
+#     "host": config("DB_HOST"),
+#     "user":config("DB_USER"),
+#     "password":config("DB_PASSWORD"),
+#     "database":config("DB_NAME"),
+#     "port": config("DB_PORT", cast=int)
+# }
 
 #mysql connection
 def get_db_connection():
@@ -262,4 +262,4 @@ def preprocessDataAndPredict(json_data):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

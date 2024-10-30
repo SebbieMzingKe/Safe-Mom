@@ -21,3 +21,4 @@ tzdata
 werkzeug
 xgboost
 zipp
+flask_sqlalchemy
