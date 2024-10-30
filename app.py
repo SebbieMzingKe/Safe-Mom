@@ -61,9 +61,18 @@ def login_required(f):
         return f(*args, **kwargs)
     return decorated_function
 
+def redirect_home(f):
+    @wraps(f)
+    def decorated_home(*args, **kwargs):
+        if 'user_id' in session:
+            return redirect(url_for('hello_world'))
+        return f(*args, **kwargs)
+    return decorated_home
 
-@app.route("/", methods=['POST', 'GET'])
+
+# @app.route("/", methods=['POST', 'GET'])
 @app.route("/login", methods=['POST', 'GET'])
+@redirect_home
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -130,8 +139,9 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@login_required
+
 @app.route("/home",methods=["GET","POST"])
+@login_required
 def hello_world():
     return render_template('home.html')
 
