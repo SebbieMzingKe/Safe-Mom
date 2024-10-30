@@ -166,7 +166,7 @@ def predict():
             to_predict_list.get('pcv'),
             to_predict_list.get('platelet'),
             to_predict_list.get('creatinine'),
-            to_predict_list.get('plgf_sflt'),
+            to_predict_list.get('plgf:sflt'),
             to_predict_list.get('SEng'),
             to_predict_list.get('cysC'),
             to_predict_list.get('pp_13'),
@@ -192,9 +192,8 @@ def predict():
         json_data = json.dumps(to_predict_list)
         
         # try:
-        prediction = preprocessDataAndPredict(json_data)
-        print(f"This is the prediction template: {prediction}")
-        return render_template('/predict.html', prediction = prediction)
+        prediction, risk_percentage = preprocessDataAndPredict(json_data)
+        return render_template('/predict.html', prediction = prediction, risk_percentage = risk_percentage)
          
         
         # except ValueError:
@@ -234,9 +233,11 @@ def preprocessDataAndPredict(json_data):
     trained_model = joblib.load(file)
     
     prediction = trained_model.predict(test_data)
+    risk_percentage = trained_model.predict_proba(test_data)[0][1] * 100  # Getting the probability of being at risk
+    
     print(f"This is the prediction template: {prediction}")
 
-    return prediction
+    return prediction, risk_percentage
 
 
 
