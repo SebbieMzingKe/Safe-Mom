@@ -67,7 +67,7 @@ def redirect_home(f):
         if 'user_id' in session:
             return redirect(url_for('hello_world'))
         return f(*args, **kwargs)
-    return decorated_home
+    return decorated_home 
 
 
 # @app.route("/", methods=['POST', 'GET'])
