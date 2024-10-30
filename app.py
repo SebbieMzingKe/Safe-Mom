@@ -11,6 +11,7 @@ from forms import RegistrationForm, LoginForm
 # from mysql.connector import Error
 import json
 import email_validator
+from email_validator import validate_email, EmailNotValidError
 import pandas as pd
 import joblib
 import xgboost
@@ -105,6 +106,13 @@ def logout():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        # Validate the email of a user
+        try:
+            valid = validate_email(form.email.data)
+            email = valid.email  # Extracts the normalized email if valid
+        except EmailNotValidError as e:
+            flash(str(e), 'danger')  #  if email is invalid
+            return render_template('register.html', title='Register', form=form)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
          
 
@@ -243,39 +251,3 @@ def preprocessDataAndPredict(json_data):
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-# @app.route("/register", methods=['POST', 'GET'])
-
-# def register():
-#     form = RegistrationForm()
-#     if form.validate_on_submit():
-#         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-         
-
-#         connection = get_db_connection()
-#         cursor = connection.cursor()
-#         cursor.execute('INSERT INTO users (username, email, password) VALUES (%s, %s, %s)',
-#                        (form.username.data, form.email.data, hashed_password))
-#         connection.commit()
-#         cursor.close()
-#         connection.close()
-
-#         flash(f'Account Successfully Created for {form.username.data}!', 'success')
-#         return redirect(url_for('login'))
-    
-#     return render_template('register.html', title='Register', form=form)
-
-
-
-# def preprocessDataAndPredict(feature_dict):
-#     test_data = {k:[v] for k, v in feature_dict.items()}
-#     test_data = pd.DataFrame(test_data) 
-    
-#     file = open("safe_mom_model_1.pkl", "rb")
-    
-#     trained_model = joblib.load(file)
-    
-#     predict = trained_model.predict(test_data)
-
-#     return predict
