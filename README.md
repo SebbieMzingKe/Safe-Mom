@@ -24,7 +24,7 @@
 
 [Live Demo of Our Solution](https://www.loom.com/share/90ed393ac43a4bf085f94dd308355164)
 
-[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://youtu.be/vt5fpE0bzSY)
+[![Watch the video](https://i.sstatic.net/Vp2cE.png)](https://www.loom.com/share/90ed393ac43a4bf085f94dd308355164)
 
 
 
