@@ -7,40 +7,50 @@ from werkzeug.security import check_password_hash
 
 from forms import RegistrationForm, LoginForm
 
-import mysql.connector
-from mysql.connector import Error
+# import mysql.connector
+# from mysql.connector import Error
 import json
 import email_validator
+from email_validator import validate_email, EmailNotValidError
 import pandas as pd
 import joblib
 import xgboost
+import psycopg2
+from psycopg2 import sql, Error
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='a5cd36c715058bf2c9057169b7134a4d'
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///siste.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///siste.db'
 # db = SQLAlchemy(app)
 
 bcrypt = Bcrypt(app)
 
 db_config = {
-    "host": "localhost",
-    "user":"root",
-    "password":"Seb#@Evayo1",
-    "database":"safe-mom"
+    "host": "ep-crimson-block-a5wcgzxx.us-east-2.aws.neon.tech",
+    "user":"neondb_owner",
+    "password":"it1M9sTPAqEh",
+    "database":"safe-mom",
+    "port": 5432
 }
 
 #mysql connection
 def get_db_connection():
     connection = None
     try:
-        connection = mysql.connector.connect(**db_config)
-        if connection.is_connected():
-            return connection
+        connection = psycopg2.connect(
+            host="ep-crimson-block-a5wcgzxx.us-east-2.aws.neon.tech",
+            database="safe-mom",
+            user="neondb_owner",
+            password="it1M9sTPAqEh"
+        )
+        # connection = psycopg2.connect(**db_config)
+        # if connection.is_connected():
+        return connection
     except Error as e:
-        print("Error: '{e}'")
+        print("Error: {e}")
     return connection
 
 def login_required(f):
@@ -96,6 +106,13 @@ def logout():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        # Validate the email of a user
+        try:
+            valid = validate_email(form.email.data)
+            email = valid.email  # Extracts the normalized email if valid
+        except EmailNotValidError as e:
+            flash(str(e), 'danger')  #  if email is invalid
+            return render_template('register.html', title='Register', form=form)
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
          
 
@@ -141,7 +158,7 @@ def predict():
         cursor = connection.cursor()
         
         insert_query = '''
-        INSERT INTO patient_data 
+        INSERT INTO patients_data 
         (age, height, weight, bmi, sysbp, diabp, hb, pcv, platelet, creatinine, plgf_sflt, SEng, cysC, pp_13, glycerides, 
         htn, diabetes, fam_htn, sp_art, occupation, diet, activity, sleep, user_id) 
         VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
@@ -157,7 +174,7 @@ def predict():
             to_predict_list.get('pcv'),
             to_predict_list.get('platelet'),
             to_predict_list.get('creatinine'),
-            to_predict_list.get('plgf_sflt'),
+            to_predict_list.get('plgf:sflt'),
             to_predict_list.get('SEng'),
             to_predict_list.get('cysC'),
             to_predict_list.get('pp_13'),
@@ -183,9 +200,8 @@ def predict():
         json_data = json.dumps(to_predict_list)
         
         # try:
-        prediction = preprocessDataAndPredict(json_data)
-        print(f"This is the prediction template: {prediction}")
-        return render_template('/predict.html', prediction = prediction)
+        prediction, risk_percentage = preprocessDataAndPredict(json_data)
+        return render_template('/predict.html', prediction = prediction, risk_percentage = risk_percentage)
          
         
         # except ValueError:
@@ -225,47 +241,13 @@ def preprocessDataAndPredict(json_data):
     trained_model = joblib.load(file)
     
     prediction = trained_model.predict(test_data)
+    risk_percentage = trained_model.predict_proba(test_data)[0][1] * 100  # Getting the probability of being at risk
+    
     print(f"This is the prediction template: {prediction}")
 
-    return prediction
+    return prediction, risk_percentage
 
 
 
 if __name__ == '__main__':
     app.run(debug=True)
-
-
-# @app.route("/register", methods=['POST', 'GET'])
-
-# def register():
-#     form = RegistrationForm()
-#     if form.validate_on_submit():
-#         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-         
-
-#         connection = get_db_connection()
-#         cursor = connection.cursor()
-#         cursor.execute('INSERT INTO users (username, email, password) VALUES (%s, %s, %s)',
-#                        (form.username.data, form.email.data, hashed_password))
-#         connection.commit()
-#         cursor.close()
-#         connection.close()
-
-#         flash(f'Account Successfully Created for {form.username.data}!', 'success')
-#         return redirect(url_for('login'))
-    
-#     return render_template('register.html', title='Register', form=form)
-
-
-
-# def preprocessDataAndPredict(feature_dict):
-#     test_data = {k:[v] for k, v in feature_dict.items()}
-#     test_data = pd.DataFrame(test_data) 
-    
-#     file = open("safe_mom_model_1.pkl", "rb")
-    
-#     trained_model = joblib.load(file)
-    
-#     predict = trained_model.predict(test_data)
-
-#     return predict

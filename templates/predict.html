@@ -30,7 +30,7 @@
             margin: 20px;
         }
         .banner {
-            background-color: #5cb85c;
+            /* background-color: #673AB7; */
             padding: 15px;
             border-radius: 8px 8px 0 0;
             color: white;
@@ -123,7 +123,8 @@
                 </div>
                 <div class="thumbnail">
                     {% if prediction[0] == 1 %}
-                    <h3>At High Risk of Getting Preeclampsia</h3>
+                    <h3>You are {{ risk_percentage | int }}% at risk of getting Getting Preeclampsia</h3>
+                    <h1>Risk : {{ risk_percentage | int }}%</h1>
                     <img src="static/images/sad.webp" alt="Sad Emoji" height="50px" width="50px" class="emoji">
                     <div class="recommendations">
                         <h3>Recommendations:</h3>
