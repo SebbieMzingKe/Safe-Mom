@@ -30,11 +30,11 @@ app.config['SECRET_KEY']='a5cd36c715058bf2c9057169b7134a4d'
 bcrypt = Bcrypt(app)
 
 db_config = {
-    "host": "ep-crimson-block-a5wcgzxx.us-east-2.aws.neon.tech",
-    "user":"neondb_owner",
-    "password":"it1M9sTPAqEh",
-    "database":"safe-mom",
-    "port": 5432
+    "host": config("DB_HOST"),
+    "user":config("DB_USER"),
+    "password":config("DB_PASSWORD"),
+    "database":config("DB_NAME"),
+    "port": config("DB_PORT", cast=int)
 }
 
 #mysql connection
@@ -42,10 +42,11 @@ def get_db_connection():
     connection = None
     try:
         connection = psycopg2.connect(
-            host="ep-crimson-block-a5wcgzxx.us-east-2.aws.neon.tech",
-            database="safe-mom",
-            user="neondb_owner",
-            password="it1M9sTPAqEh"
+            host=config("DB_HOST"),
+            database=config("DB_NAME"),
+            user=config("DB_USER"),
+            password=config("DB_PASSWORD"),
+            port=config("DB_PORT", cast=int)
         )
         # connection = psycopg2.connect(**db_config)
         # if connection.is_connected():
