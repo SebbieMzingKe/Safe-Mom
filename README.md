@@ -22,7 +22,8 @@
 6. [License](#license)
 
 
-# [Live Demo of Our Solution](<[https://www.loom.com/share/90ed393ac43a4bf085f94dd308355164](https://www.loom.com/share/90ed393ac43a4bf085f94dd308355164?sid=f8b7a5cb-2f39-4ede-a0af-b27a8d09c1a7)>)
+[Live Demo of Our Solution](https://www.loom.com/share/90ed393ac43a4bf085f94dd308355164)
+
 
 
 
