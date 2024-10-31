@@ -171,9 +171,9 @@ def predict():
         
         insert_query = '''
         INSERT INTO patients_data 
-        (age, height, weight, bmi, sysbp, diabp, hb, pcv, platelet, creatinine, plgf_sflt, SEng, cysC, pp_13, glycerides, 
+        (age, height, weight, bmi, sysbp, diabp, hb, pcv, tsh, platelet, creatinine, plgf_sflt, SEng, cysC, pp_13, glycerides, 
         htn, diabetes, fam_htn, sp_art, occupation, diet, activity, sleep, user_id) 
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
         '''
         values = (
             to_predict_list.get('age'),
@@ -184,6 +184,7 @@ def predict():
             to_predict_list.get('diabp'),
             to_predict_list.get('hb'),
             to_predict_list.get('pcv'),
+            to_predict_list.get('tsh'),
             to_predict_list.get('platelet'),
             to_predict_list.get('creatinine'),
             to_predict_list.get('plgf:sflt'),
