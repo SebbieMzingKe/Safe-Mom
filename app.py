@@ -142,7 +142,7 @@ def register():
 
 
 
-@app.route("/home",methods=["GET","POST"])
+@app.route("/",methods=["GET","POST"])
 @login_required
 def hello_world():
     return render_template('home.html')
