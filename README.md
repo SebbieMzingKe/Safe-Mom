@@ -65,8 +65,7 @@ Safe Mom is a predictive machine learning solution aimed at helping expectant mo
    pip install -r requirements.txt
 5. Set up your MySQL database by importing the provided schema.
    ```bash
-   mysql -u username -p safe-mom < safe-mom.sql
-
+   psql postgresql://username:password@host/dbname # replace username, password, host and dbname with your's
 6. Run the application.
    ```bash
    flask run or uvicorn app:app --reload or python app.py
