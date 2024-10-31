@@ -1,6 +1,38 @@
 {% extends "layout.html" %}
 {% block content%}
 
+<style>
+    /* Spinner and overlay */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        display: none; /* Hidden by default */
+    }
+
+    .spinner {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+
+
 <!-- partial:index.partial.html -->
 <div class="container-fluid">
     <div class="row justify-content-center">
@@ -8,7 +40,11 @@
             <divc class="card px-10 pt-4 pb-10 ml-4 mr-4 mt-1 mb-3">
                 <h2 id="heading">Fill in Patient Details</h2>
                 <p>Fill all form field to go to next step</p>
-                <form id="msform" method="post" action="/predict">
+                <!-- <form id="msform" method="post" action="/predict"> -->
+
+                    <form id="msform" method="post" action="/predict" onsubmit="showLoader(); setTimeout(() => { form.submit(); }, 2000); return false;">
+
+
                     <!-- progressbar -->
                     <ul id="progressbar">
                         <li class="active" id="account"><strong>Demographics</strong></li>
@@ -130,5 +166,28 @@
         </div>
     </div>
 </div>
+
+
+<!-- Loading overlay and spinner -->
+<div id="loadingOverlay" class="overlay">
+    <div>
+        <div class="spinner"></div>
+        <p>Please wait while we analyze your inputs...</p>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("msform");
+        const overlay = document.getElementById("loadingOverlay");
+
+        form.addEventListener("submit", function (event) {
+            // Show loading spinner and message
+            overlay.style.display = "flex";
+        });
+    });
+</script>
+
 
 {% endblock content %}
