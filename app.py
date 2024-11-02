@@ -157,6 +157,7 @@ def contact():
     return render_template("contact.html", title = "contact")
 
 
+
 @app.route("/predict", methods = ["GET", "POST"])
 def predict():
     if request.method == "POST":
@@ -263,4 +264,4 @@ def preprocessDataAndPredict(json_data):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
