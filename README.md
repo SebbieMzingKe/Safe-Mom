@@ -69,6 +69,9 @@ Safe Mom is a predictive machine learning solution aimed at helping expectant mo
 6. Run the application.
    ```bash
    flask run or uvicorn app:app --reload or python app.py
+7. If using docker
+   ```bash
+   docker pull sebbiemzing/safe-mom-web:latest
 ### Usage
 On launching the Safe Mom, clinicians log in using their credentials. Once logged in, they can access the patient data input section.
 
