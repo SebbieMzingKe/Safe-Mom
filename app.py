@@ -93,7 +93,7 @@ def login():
             return redirect(url_for('hello_world'))
 
         else:
-            print(f'Login Failed. Please check your email and password.', 'danger')
+            flash(f'Login Failed. Please check your email and password.', 'danger')
 
         cursor.close()
         connection.close()
