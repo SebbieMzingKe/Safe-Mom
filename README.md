@@ -2,15 +2,6 @@
 
 # Table of Contents
 
-<!-- 1. [Project Overview](<project-overview>)
-2. [Project Goals](<project-goals>)
-3. [Key Features](<key-features>)
-4. [Installation](<installation>)
-   - [Prerequisites](<prerequisites>)
-   - [Steps](<steps>)
-5. [Usage](<usage>)
-6. [License](<license>) -->
-
 
 1. [Project Overview](#project-overview)
 2. [Project Goals](#project-goals)
