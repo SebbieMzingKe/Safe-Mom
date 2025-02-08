@@ -1,0 +1,30 @@
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - SECRET_KEY=a5cd36c715058bf2c9057169b7134a4d
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=safe-mom
+      - DB_USER=neondb_owner
+      - DB_PASSWORD=it1M9sTPAqEh
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: safe-mom
+      POSTGRES_USER: neondb_owner
+      POSTGRES_PASSWORD: it1M9sTPAqEh
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
