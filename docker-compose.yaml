@@ -1,3 +1,4 @@
+version: '3.7'
 services:
   web:
     build:
@@ -6,21 +7,21 @@ services:
     ports:
       - "5000:5000"
     environment:
-      - SECRET_KEY=a5cd36c715058bf2c9057169b7134a4d
-      - DB_HOST=db
-      - DB_PORT=5432
-      - DB_NAME=safe-mom
-      - DB_USER=neondb_owner
-      - DB_PASSWORD=it1M9sTPAqEh
+      - SECRET_KEY=${SECRET_KEY}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - db
 
   db:
     image: postgres:13
     environment:
-      POSTGRES_DB: safe-mom
-      POSTGRES_USER: neondb_owner
-      POSTGRES_PASSWORD: it1M9sTPAqEh
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
     ports:
       - "5432:5432"
     volumes:
