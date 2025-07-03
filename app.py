@@ -37,6 +37,10 @@ bcrypt = Bcrypt(app)
 #     "port": config("DB_PORT", cast=int)
 # }
 
+@app.route("/ping", methods=["GET"])
+def ping():
+    return "pong", 200
+
 #mysql connection
 def get_db_connection():
     connection = None
