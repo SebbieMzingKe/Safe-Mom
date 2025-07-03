@@ -27,6 +27,11 @@ app.config['SECRET_KEY']='a5cd36c715058bf2c9057169b7134a4d'
 
 bcrypt = Bcrypt(app)
 
+@app.route("/ping", methods=["GET"])
+def ping():
+    return "pong", 200
+
+#mysql connection
 def get_db_connection():
     connection = None
     try:
