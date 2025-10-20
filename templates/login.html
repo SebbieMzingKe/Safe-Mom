@@ -4,7 +4,7 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Log In</legend>
+                <legend class="border-bottom mb-4">Log In.</legend>
                 <div class="form-group">
                     {{ form.email.label(class="form-control-label") }}
                     {{ form.email(class="form-control form-control-lg") }}
@@ -22,7 +22,7 @@
     </div>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Dont Have an Account ? <a href="{{ url_for('register') }}" class="ml-2">Sign up</a>
+            Dont Have an Account ? <a href="{{ url_for('register') }}" class="ml-2">Sign up.</a>
         </small>
     </div>
 {% endblock content %}
